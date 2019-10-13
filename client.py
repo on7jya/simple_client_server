@@ -10,7 +10,7 @@ from threading import Thread
 def read_sok():
     while True:
         data = sor.recv(1024)
-        print(f'{dt.datetime.today().strftime("%Y-%m-%d %H:%M:%S")}: server read mes from {alias}: {data.decode("utf-8")}')
+        print(f'{dt.datetime.today().strftime("%Y-%m-%d %H:%M:%S")}: server read mes: {data.decode("utf-8")}')
 
 
 def send_sok():
@@ -20,7 +20,8 @@ def send_sok():
 
 
 server = '127.0.0.1', 9090  # Данные сервера
-alias = 'client'  # Вводим наш псевдоним
+print("Введите альяс клиента: ")
+alias = input()  # Вводим наш псевдоним
 sor = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sor.bind(('127.0.0.1', 0))  # Задаем сокет как клиент
 sor.sendto((alias + ' connect to server').encode('utf-8'), server)  # Уведомляем сервер о подключении
